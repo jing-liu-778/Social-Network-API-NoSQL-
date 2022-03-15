@@ -52,11 +52,15 @@ const userController = {
   },
 
   // Find user and update
-  updateUser({ params, body }, res) {
-    User.findOneAndUpdate({ _id: params.id }, body, {
-      new: true,
-      runValidators: true,
-    })
+  updateUser(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: req.body },
+      {
+        new: true,
+        runValidators: true,
+      }
+    )
       .then((dbUserData) => {
         if (!dbUserData) {
           res.status(404).json({ message: "No User found with this id!" });
@@ -64,7 +68,7 @@ const userController = {
         }
         res.json(dbUserData);
       })
-      .catch((err) => res.status(400).json(err));
+      .catch((err) => res.status(500).json(err));
   },
 
   // Adding friend to friend's list
@@ -125,5 +129,4 @@ const userController = {
   },
 };
 
-// Exporting controller
 module.exports = userController;
