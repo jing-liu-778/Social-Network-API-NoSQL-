@@ -1,11 +1,11 @@
 const { User } = require("../models");
 
-// controller for User
+// set up user controller
 const userController = {
   // Get all users
   getAllUsers(req, res) {
     User.find({})
-      // populating thoughts
+      // populate thoughts
       .populate({
         path: "thoughts",
         select: "-__v",
