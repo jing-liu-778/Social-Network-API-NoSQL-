@@ -80,7 +80,7 @@ const thoughtController = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // // Create reaction
+  // Create reaction
   addReaction({ params, body }, res) {
     Thought.findOneAndUpdate(
       { _id: params.thoughtId },
@@ -103,8 +103,8 @@ const thoughtController = {
   },
 
   // Find thought and delete
-  deleteThought({ params }, res) {
-    Thought.findOneAndDelete({ _id: params.id })
+  deleteThought(req, res) {
+    Thought.findOneAndDelete({ _id: req.params.id })
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
           res.status(404).json({ message: "No thought found with this id!" });
