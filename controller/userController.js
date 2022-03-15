@@ -5,18 +5,18 @@ const userController = {
   // Get all users
   getAllUsers(req, res) {
     User.find({})
-      // populate thoughts
-      .populate({
-        path: "thoughts",
-        select: "-__v",
-      })
-      // populating friends
-      .populate({
-        path: "friends",
-        select: "-__v",
-      })
-      .select("-__v")
-      .sort({ _id: -1 })
+      //   // populate thoughts
+      //   .populate({
+      //     path: "thoughts",
+      //     select: "-__v",
+      //   })
+      //   // populate friends
+      //   .populate({
+      //     path: "friends",
+      //     select: "-__v",
+      //   })
+      //   .select("-__v")
+      //   .sort({ _id: -1 })
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
         console.log(err);
@@ -39,7 +39,7 @@ const userController = {
       // return if no user is found
       .then((dbUserData) => {
         if (!dbUserData) {
-          res.status(404).json({ message: "No User found with this id!" });
+          res.status(404).json({ message: "No user with that ID" });
           return;
         }
         res.json(dbUserData);
