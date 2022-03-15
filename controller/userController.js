@@ -25,24 +25,15 @@ const userController = {
   },
 
   // Get user by id
-  getUserById({ params }, res) {
-    User.findOne({ _id: params.id })
-      .populate({
-        path: "thoughts",
-        select: "-__v",
-      })
-      .populate({
-        path: "friends",
-        select: "-__v",
-      })
+  getUserById(req, res) {
+    User.findOne({ _id: req.params.id })
+
       .select("-__v")
       // return if no user is found
       .then((dbUserData) => {
-        if (!dbUserData) {
-          res.status(404).json({ message: "No user with that ID" });
-          return;
-        }
-        res.json(dbUserData);
+        !dbUserData
+          ? res.status(404).json({ message: "No user with that ID" })
+          : res.json(dbUserData);
       })
       .catch((err) => {
         console.log(err);
