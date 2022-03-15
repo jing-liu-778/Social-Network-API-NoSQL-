@@ -1,4 +1,4 @@
-# Social-Network-API-NoSQL-
+# Social Network API
 
 ![Github licence](http://img.shields.io/badge/license-MIT-blue.svg)
 
