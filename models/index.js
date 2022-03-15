@@ -1,5 +1,5 @@
 const User = require("./User");
 const Thought = require("./Thought");
 
-// Exporting models
+//--- Exporting models
 module.exports = { User, Thought };
