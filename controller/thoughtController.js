@@ -1,12 +1,12 @@
 const { Thought, User } = require("../models");
 
-// Controller for thoughts
+// set thought controller
 const thoughtController = {
   // Get all thoughts
   getAllThoughts(req, res) {
     Thought.find({})
-      // sorting by id
-      .sort({ _id: -1 })
+      //   // sorting by id
+      //   .sort({ _id: -1 })
       .then((dbThoughtData) => res.json(dbThoughtData))
       .catch((err) => {
         console.log(err);
